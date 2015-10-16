@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BestDescription</string>
+
+    <string name = "playButton"> Play </string>
+    <string name = "settingsButton"> Settings </string>
+    <string name = "action_settings">Settings</string>
+</resources>
