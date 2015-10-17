@@ -1,5 +1,6 @@
 package johnson.bestdescription;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,29 +10,20 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button playBtn;
-    private Button settingsBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        playBtn = (Button)findViewById(R.id.playButton);
-        playBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                setContentView(R.layout.game_activity);
-            }
-        });
+    }
 
-        settingsBtn = (Button)findViewById(R.id.settingsButton);
-        settingsBtn.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    setContentView(R.layout.settings_activity);
-                }
-        });
+    public void play(View v){
+        Intent i = new Intent(this, gameActivity.class);
+        startActivity(i);
+    }
 
+    public void settings(View v){
+        Intent i = new Intent(this, settingsActivity.class);
+        startActivity(i);
     }
 
     @Override
