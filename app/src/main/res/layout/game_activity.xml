@@ -6,22 +6,5 @@
     android:background="#3e111a">
 
 
-    <fragment
-        android:layout_width="fill_parent"
-        android:layout_height="250dp"
-        android:name="johnson.bestdescription.QuestionFragment"
-        android:id="@+id/fragment"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        tools:layout="@layout/question_fragment" />
 
-    <fragment
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:name="johnson.bestdescription.AnswersFragment"
-        android:id="@+id/fragment2"
-        tools:layout="@layout/answers_fragment"
-        android:layout_below="@+id/fragment"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 </RelativeLayout>
