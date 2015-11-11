@@ -1,54 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#3e111a">
 
 
-    <ImageView
-        android:layout_width="match_parent"
+    <fragment
+        android:layout_width="fill_parent"
         android:layout_height="250dp"
-        android:id="@+id/gameImage"
-        android:layout_row="3"
-        android:layout_column="11"
-        android:layout_gravity="top"
-        android:src="@drawable/game_image_1" />
+        android:name="johnson.bestdescription.QuestionFragment"
+        android:id="@+id/fragment"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:layout="@layout/question_fragment" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <fragment
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/choiceFour"
-        android:layout_row="8"
-        android:layout_column="11"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="30dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/choiceThree"
-        android:layout_row="7"
-        android:layout_column="11"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/choiceTwo"
-        android:layout_row="6"
-        android:layout_column="11"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/choiceOne"
-        android:layout_row="5"
-        android:layout_column="11"
-        android:layout_gravity="center_horizontal" />
-
-</GridLayout>
+        android:name="johnson.bestdescription.AnswersFragment"
+        android:id="@+id/fragment2"
+        tools:layout="@layout/answers_fragment"
+        android:layout_below="@+id/fragment"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

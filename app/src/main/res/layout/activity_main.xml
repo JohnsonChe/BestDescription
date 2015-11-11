@@ -27,7 +27,7 @@
         android:layout_weight="0.03"
         android:clickable="true"
         android:layout_marginTop="30dp"
-        android:onClick="play"
+        android:onClick="onClickPlay"
         android:nestedScrollingEnabled="false" />
 
     <Button
@@ -39,5 +39,5 @@
         android:layout_weight="0.03"
         android:layout_marginTop="15dp"
         android:clickable="true"
-        android:onClick="settings" />
+        android:onClick="onClickSettings" />
 </LinearLayout>

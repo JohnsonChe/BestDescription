@@ -13,16 +13,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
     }
 
-    public void play(View v){
-        Intent i = new Intent(this, gameActivity.class);
+    public void onClickPlay(View v){
+        Intent i = new Intent(this, GameActivity.class);
         startActivity(i);
     }
 
-    public void settings(View v){
-        Intent i = new Intent(this, settingsActivity.class);
+    public void onClickSettings(View v){
+        Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);
     }
 
@@ -47,4 +48,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
