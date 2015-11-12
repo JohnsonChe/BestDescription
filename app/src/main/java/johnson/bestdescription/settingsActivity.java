@@ -13,7 +13,7 @@ public class settingsActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.settings_activity);
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -35,4 +35,5 @@ public class settingsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }

@@ -10,6 +10,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,12 +19,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickPlay(View v){
-        Intent i = new Intent(this, GameActivity.class);
+        Intent i = new Intent(this, gameActivity.class);
         startActivity(i);
     }
 
     public void onClickSettings(View v){
-        Intent i = new Intent(this, SettingsActivity.class);
+        Intent i = new Intent(this, settingsActivity.class);
         startActivity(i);
     }
 

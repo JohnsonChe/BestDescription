@@ -23,7 +23,7 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_QUESTIONS + "(" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_QUESTION + " TEXT " +
                 COLUMN_ANSWER + " TEXT " +
                 COLUMN_POSSIBLEANSWERS + " TEXT " +
@@ -33,6 +33,34 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTIONS);
+        onCreate(db);
+    }
 
+    public void addQuestion(QuestionAnswer question){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_QUESTION, question.getQuestion());
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABLE_QUESTIONS, null, values);
+        db.close();
+    }
+
+    public String databaseToString(){
+        String dbString = "";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_QUESTIONS + " WHERE 1";
+
+        Cursor c = db.rawQuery(query,null);
+        c.moveToFirst();
+
+        while(!c.isAfterLast()){
+                if(c.getString(c.getColumnIndex("Question"))!= null){
+                    dbString = c.getString(c.getColumnIndex("Question"));
+            }
+            c.moveToNext();
+        }
+
+        db.close();
+        return dbString;
     }
 }

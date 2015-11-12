@@ -9,6 +9,10 @@ public class QuestionAnswer {
 
     QuestionAnswer(){}
 
+    QuestionAnswer(String question){
+        Question = question;
+    }
+
     QuestionAnswer(int ID, String Question, String Answer){
         ID = this.ID;
         Question = this.Question;
