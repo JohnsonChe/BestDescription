@@ -3,6 +3,7 @@
     package="johnson.bestdescription" >
 
     <uses-permission android:name = "android.permission.INTERACT_ACROSS_USERS_FULL"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
