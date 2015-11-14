@@ -1,36 +1,83 @@
 package johnson.bestdescription;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+
+import java.io.IOException;
+import java.util.List;
 
 public class gameActivity extends AppCompatActivity {
 
-    TextView questionText;
-    DBHandler dbHandler;
+    public int currentQuestionNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.game_activity);
-        questionText = (TextView)findViewById(R.id.questionText);
-        addQuestionToDB();
+        List<QuestionAnswer> questions = setQuestionsFromDB();
+        QuestionAnswer currentQuestion = setCurrentQuestion(questions);
+        setQuestionWidgets(currentQuestion);
     }
 
-    public void addQuestionToDB(){
-       QuestionAnswer question = new QuestionAnswer(getString(R.string.question1));
-       dbHandler = new DBHandler(this,null,null,1);
-       dbHandler.addQuestion(question);
-       printQuestions(dbHandler);
+    public List<QuestionAnswer> setQuestionsFromDB(){
+        DBHandler dbHandler = new DBHandler(this);
+
+        try{
+            dbHandler.createDataBase();
+        }catch(IOException ioe){
+            throw new Error("Unable to create database");
+        }
+
+        try{
+            dbHandler.openDataBase();
+        }catch (SQLiteException sqle){
+            throw sqle;
+        }
+
+        List<QuestionAnswer> questions = dbHandler.getQuestionSet();
+        dbHandler.close();
+
+        return questions;
     }
 
-    public void printQuestions(DBHandler dbHandler){
-        String questionString = dbHandler.databaseToString();
-        questionText.setText(questionString);
+    public void onButtonClick(View V){
+        //Intent i = new Intent(this,gameActivity.class);
+        //startActivity(i);
     }
+
+    public QuestionAnswer setCurrentQuestion(List<QuestionAnswer> questions){
+        QuestionAnswer currentQuestion = questions.get(currentQuestionNumber);
+        currentQuestionNumber++;
+
+        return currentQuestion;
+    }
+
+    public void setQuestionWidgets(QuestionAnswer currentQuestion){
+        TextView questionText = (TextView)findViewById(R.id.questionText);
+        questionText.setText(currentQuestion.getQuestion());
+
+        Button buttonA = (Button)findViewById(R.id.buttonA);
+        buttonA.setText(currentQuestion.getAnswer());
+
+        Button buttonB = (Button)findViewById(R.id.buttonB);
+        buttonB.setText(currentQuestion.getIncorrect1());
+
+        Button buttonC = (Button)findViewById(R.id.buttonC);
+        buttonC.setText(currentQuestion.getIncorrect2());
+
+        Button buttonD = (Button)findViewById(R.id.buttonD);
+        buttonD.setText(currentQuestion.getIncorrect3());
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

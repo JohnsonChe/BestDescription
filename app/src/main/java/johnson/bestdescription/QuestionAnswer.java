@@ -5,7 +5,9 @@ public class QuestionAnswer {
     private int ID;
     private String Question;
     private String Answer;
-    private String possibleAnswers;
+    private String incorrect1;
+    private String incorrect2;
+    private String incorrect3;
 
     QuestionAnswer(){}
 
@@ -43,11 +45,27 @@ public class QuestionAnswer {
         Answer = answer;
     }
 
-    public String getPossibleAnswers() {
-        return possibleAnswers;
+    public String getIncorrect1() {
+        return incorrect1;
     }
 
-    public void setPossibleAnswers(String possibleAnswers) {
-        this.possibleAnswers = possibleAnswers;
+    public void setIncorrect1(String incorrect1) {
+        this.incorrect1 = incorrect1;
+    }
+
+    public String getIncorrect2() {
+        return incorrect2;
+    }
+
+    public void setIncorrect2(String incorrect2) {
+        this.incorrect2 = incorrect2;
+    }
+
+    public String getIncorrect3() {
+        return incorrect3;
+    }
+
+    public void setIncorrect3(String incorrect3) {
+        this.incorrect3 = incorrect3;
     }
 }

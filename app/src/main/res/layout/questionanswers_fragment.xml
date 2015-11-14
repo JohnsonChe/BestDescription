@@ -18,7 +18,8 @@
         android:id="@+id/buttonA"
         android:layout_gravity="center_horizontal"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onButtonClick" />
 
     <Button
         android:layout_width="300dp"
@@ -26,7 +27,8 @@
         android:id="@+id/buttonB"
         android:layout_below="@+id/buttonA"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:onClick="onButtonClick" />
 
     <Button
         android:layout_width="300dp"
@@ -34,7 +36,8 @@
         android:id="@+id/buttonC"
         android:layout_below="@+id/buttonB"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:onClick="onButtonClick" />
 
     <Button
         android:layout_width="300dp"
@@ -43,5 +46,6 @@
         android:layout_below="@+id/buttonC"
         android:layout_alignLeft="@+id/buttonC"
         android:layout_alignStart="@+id/buttonC"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:onClick="onButtonClick" />
 </RelativeLayout>
