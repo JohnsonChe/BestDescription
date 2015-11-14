@@ -17,14 +17,16 @@ import java.util.List;
 public class gameActivity extends AppCompatActivity {
 
     public int currentQuestionNumber = 0;
+    List<QuestionAnswer> questions;
+    QuestionAnswer currentQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.game_activity);
-        List<QuestionAnswer> questions = setQuestionsFromDB();
-        QuestionAnswer currentQuestion = setCurrentQuestion(questions);
+        questions = setQuestionsFromDB();
+        currentQuestion = setCurrentQuestion(questions);
         setQuestionWidgets(currentQuestion);
     }
 
@@ -50,13 +52,19 @@ public class gameActivity extends AppCompatActivity {
     }
 
     public void onButtonClick(View V){
+        currentQuestionNumber++;
+        currentQuestion = questions.get(currentQuestionNumber);
+        //setCurrentQuestion(questions);
+        setQuestionWidgets(currentQuestion);
+
         //Intent i = new Intent(this,gameActivity.class);
         //startActivity(i);
     }
 
     public QuestionAnswer setCurrentQuestion(List<QuestionAnswer> questions){
         QuestionAnswer currentQuestion = questions.get(currentQuestionNumber);
-        currentQuestionNumber++;
+
+        //currentQuestionNumber++;
 
         return currentQuestion;
     }
