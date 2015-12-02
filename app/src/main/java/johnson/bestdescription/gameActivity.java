@@ -23,12 +23,16 @@ public class gameActivity extends AppCompatActivity {
     public final String TAG = "johnson.bestdescription";
     public int currentQuestionNumber = 0;
     List<QuestionAnswer> questions;
+<<<<<<< HEAD
     ArrayList<String> CurrentQuestionList = new ArrayList<>(4);
     QuestionAnswer currentQuestion;
     int randNum;
     int maxNum = 4;
 
 
+=======
+    QuestionAnswer currentQuestion;
+>>>>>>> 831b04c993bd5e3ab6f52728a397ca145575d3f0
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
