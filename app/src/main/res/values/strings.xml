@@ -4,7 +4,14 @@
     <string name = "playButton"> Play </string>
     <string name = "settingsButton"> Settings </string>
     <string name = "action_settings">Settings</string>
-    <string name="title_activity_game">GameActivity</string>
+    <string name = "title_activity_game">GameActivity</string>
+    <string name = "scoreText">Score:</string>
+    <string name = "scoreCountText">0</string>
+    <string name = "gameOverText">Game Over!</string>
+    <string name = "yourScoreText">Your Score:</string>
+    <string name = "gameScoreText">0</string>
+    <string name = "replayButton">Replay</string>
+    <string name = "quitButton">Quit</string>
 
     <string name="title_activity_settings">SettingsActivity</string>
 </resources>
