@@ -14,7 +14,8 @@
         android:layout_marginTop="50dp"
         android:textColor="#ffffff"
         android:textSize="50dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,7 +27,8 @@
         android:layout_marginTop="25dp"
         android:textColor="#ffffff"
         android:textSize="30dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,9 +38,10 @@
         android:id="@+id/gameScoreText"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="12dp"
-        android:textColor="#b41d1d"
+        android:textColor="#FF5722"
         android:textSize="35dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:typeface="sans" />
 
     <Button
         android:layout_width="fill_parent"
@@ -54,7 +57,8 @@
         android:padding="10dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:onClick="onReplayClick" />
+        android:onClick="onReplayClick"
+        android:typeface="sans" />
 
     <Button
         android:layout_width="fill_parent"
@@ -70,5 +74,6 @@
         android:padding="10dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:onClick="onQuitClick" />
+        android:onClick="onQuitClick"
+        android:typeface="sans" />
 </LinearLayout>

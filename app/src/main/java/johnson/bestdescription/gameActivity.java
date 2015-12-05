@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -32,6 +33,7 @@ public class gameActivity extends AppCompatActivity {
     Button buttonC;
     Button buttonD;
     TextView scoreText;
+    RelativeLayout gameBackGround;
 
     Drawable defaultBG;
 
@@ -48,7 +50,13 @@ public class gameActivity extends AppCompatActivity {
     String [] randomizedAnswerArray = new String[4];
 
     int score;
-    int lastPage = 2;
+    int lastPage;
+
+    String [] bgHexCodes = {"#FFC107",
+                            "#E64A19",
+                            "#27ae60",
+                            "#009688",
+                            "#ef5350"};
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -67,6 +75,7 @@ public class gameActivity extends AppCompatActivity {
         buttonC = (Button) findViewById(R.id.buttonC);
         buttonD = (Button) findViewById(R.id.buttonD);
 
+        gameBackGround = (RelativeLayout)findViewById(R.id.gameBackGround);
         scoreText = (TextView)findViewById(R.id.scoreCountText);
         defaultBG = buttonA.getBackground();
 
@@ -77,6 +86,7 @@ public class gameActivity extends AppCompatActivity {
         currentQuestionNumber = 0;
 
         score = 0;
+        lastPage = questions.size();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -180,18 +190,23 @@ public class gameActivity extends AppCompatActivity {
            buttonB.setBackgroundDrawable(defaultBG);
            buttonC.setBackgroundDrawable(defaultBG);
            buttonD.setBackgroundDrawable(defaultBG);
+
+           setGameBackground();
        }
        else {
-           if (lastPage == currentQuestionNumber) {
                Intent intent = new Intent(this, EndGameActivity.class);
                String endGameScore = scoreText.getText().toString();
                intent.putExtra(EXTRA_MESSAGE, endGameScore);
                startActivity(intent);
                finish();
-          }
        }
     }
 
+    public void setGameBackground(){
+        Random rand = new Random();
+        int randomColorIndex = rand.nextInt(bgHexCodes.length);
+        gameBackGround.setBackgroundColor(Color.parseColor(bgHexCodes[randomColorIndex]));
+    }
     public QuestionAnswer setCurrentQuestion(List<QuestionAnswer> questions) {
         QuestionAnswer currentQuestion = questions.get(currentQuestionNumber);
 

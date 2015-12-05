@@ -4,18 +4,20 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/questionText"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:textColor="#ffffff"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="35dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:typeface="serif" />
 
     <Button
         android:layout_width="300dp"
@@ -23,11 +25,13 @@
         android:id="@+id/buttonA"
         android:layout_gravity="center_horizontal"
         android:onClick="onButtonClick"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="35dp"
         android:textSize="16sp"
         android:layout_below="@+id/questionText"
         android:layout_alignLeft="@+id/buttonB"
-        android:layout_alignStart="@+id/buttonB" />
+        android:layout_alignStart="@+id/buttonB"
+        android:typeface="sans"
+        android:padding="5dp" />
 
     <Button
         android:layout_width="300dp"
@@ -37,7 +41,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:onClick="onButtonClick"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:typeface="sans"
+        android:padding="5dp" />
 
     <Button
         android:layout_width="300dp"
@@ -47,7 +53,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:onClick="onButtonClick"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:typeface="sans"
+        android:padding="5dp" />
 
     <Button
         android:layout_width="300dp"
@@ -58,7 +66,9 @@
         android:layout_alignStart="@+id/buttonC"
         android:layout_marginTop="20dp"
         android:onClick="onButtonClick"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:typeface="sans"
+        android:padding="5dp" />
 
     <ImageButton
         android:layout_width="50dp"
