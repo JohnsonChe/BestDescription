@@ -8,16 +8,15 @@
 
 
     <fragment
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:name="johnson.bestdescription.QuestionAnswerFragment"
         android:id="@+id/fragment"
         tools:layout="@layout/questionanswers_fragment"
         android:layout_alignWithParentIfMissing="false"
-        android:layout_alignParentBottom="false"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false" />
+        android:layout_gravity="center|left"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="100dp"
@@ -37,16 +36,18 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:layout_width="40dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/scoreCountText"
         android:id="@+id/scoreCountText"
-        android:layout_alignTop="@+id/scoreText"
-        android:layout_toRightOf="@+id/scoreText"
-        android:layout_marginLeft="10dp"
         android:textSize="30sp"
         android:textColor="#ffffff"
         android:typeface="sans"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/scoreText"
+        android:layout_toRightOf="@+id/scoreText"
+        android:layout_toEndOf="@+id/scoreText"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false" />
 </RelativeLayout>

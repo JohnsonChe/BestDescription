@@ -55,11 +55,13 @@ public class gameActivity extends AppCompatActivity {
     int score;
     int lastPage;
 
-    String [] bgHexCodes = {"#FFC107",
+    String [] bgHexCodes = {"#009688",
                             "#E64A19",
-                            "#27ae60",
+                            "#673AB7",
                             "#009688",
-                            "#ef5350"};
+                            "#ef5350",
+                            "#B25B66",
+                            "#85144B"};
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
