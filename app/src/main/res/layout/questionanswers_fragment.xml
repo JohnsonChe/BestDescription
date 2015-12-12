@@ -11,13 +11,15 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:textColor="#ffffff"
-        android:gravity="center"
-        android:textSize="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="false"
         android:textStyle="bold"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:layout_alignRight="@+id/buttonA"
+        android:layout_alignEnd="@+id/buttonA"
+        android:layout_alignLeft="@+id/buttonA"
+        android:layout_alignStart="@+id/buttonA"
+        android:textSize="30sp"
+        android:gravity="clip_horizontal|center|clip_vertical" />
 
     <Button
         android:layout_width="300dp"
@@ -25,13 +27,16 @@
         android:id="@+id/buttonA"
         android:layout_gravity="center_horizontal"
         android:onClick="onButtonClick"
-        android:layout_marginTop="35dp"
-        android:textSize="16sp"
-        android:layout_below="@+id/questionText"
-        android:layout_alignLeft="@+id/buttonB"
-        android:layout_alignStart="@+id/buttonB"
+        android:layout_marginTop="73dp"
+        android:textSize="22sp"
         android:typeface="sans"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:layout_below="@+id/questionText"
+        android:singleLine="false"
+        android:layout_alignRight="@+id/nextButton"
+        android:layout_alignEnd="@+id/nextButton"
+        android:layout_alignLeft="@+id/buttonB"
+        android:layout_alignStart="@+id/buttonB" />
 
     <Button
         android:layout_width="300dp"
@@ -41,7 +46,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:onClick="onButtonClick"
-        android:textSize="16sp"
+        android:textSize="22sp"
         android:typeface="sans"
         android:padding="5dp" />
 
@@ -53,7 +58,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:onClick="onButtonClick"
-        android:textSize="16sp"
+        android:textSize="22sp"
         android:typeface="sans"
         android:padding="5dp" />
 
@@ -66,7 +71,7 @@
         android:layout_alignStart="@+id/buttonC"
         android:layout_marginTop="20dp"
         android:onClick="onButtonClick"
-        android:textSize="16sp"
+        android:textSize="22sp"
         android:typeface="sans"
         android:padding="5dp" />
 
@@ -75,11 +80,12 @@
         android:layout_height="50dp"
         android:id="@+id/nextButton"
         android:background="@drawable/next_button"
-        android:layout_below="@+id/buttonD"
-        android:layout_alignRight="@+id/buttonD"
-        android:layout_alignEnd="@+id/buttonD"
-        android:layout_marginTop="50dp"
         android:contentDescription="Next"
-        android:onClick="onNextButtonClick" />
+        android:onClick="onNextButtonClick"
+        android:layout_marginBottom="40dp"
+        android:adjustViewBounds="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/buttonD"
+        android:layout_alignEnd="@+id/buttonD" />
 
 </RelativeLayout>

@@ -117,14 +117,6 @@ public class DBHandler extends SQLiteOpenHelper {
         super.close();
     }
 
-
-
-
-
-
-
-
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         /*

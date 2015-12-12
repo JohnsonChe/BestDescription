@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class gameActivity extends AppCompatActivity {
     Button buttonB;
     Button buttonC;
     Button buttonD;
+    ImageButton nextButton;
     TextView scoreText;
     RelativeLayout gameBackGround;
 
@@ -41,6 +43,7 @@ public class gameActivity extends AppCompatActivity {
     public final String TAG = "johnson.bestdescription";
     public int currentQuestionNumber = 0;
     List<QuestionAnswer> questions;
+    List<QuestionAnswer> tempQuestions;
     ArrayList<String> CurrentQuestionList = new ArrayList<>(4);
     QuestionAnswer currentQuestion;
     int randNum;
@@ -75,11 +78,15 @@ public class gameActivity extends AppCompatActivity {
         buttonC = (Button) findViewById(R.id.buttonC);
         buttonD = (Button) findViewById(R.id.buttonD);
 
+        nextButton = (ImageButton) findViewById(R.id.nextButton);
+        nextButton.setEnabled(false);
+
         gameBackGround = (RelativeLayout)findViewById(R.id.gameBackGround);
         scoreText = (TextView)findViewById(R.id.scoreCountText);
         defaultBG = buttonA.getBackground();
 
         questions = setQuestionsFromDB();
+        tempQuestions = questions;
         currentQuestion = setCurrentQuestion(questions);
         setQuestionWidgets(currentQuestion);
 
@@ -125,6 +132,7 @@ public class gameActivity extends AppCompatActivity {
                     buttonA.setBackgroundColor(Color.RED);
                     displayCorrectAnswer();
                 }
+                disableAllButtons();
                 break;
             case R.id.buttonB:
                 if(currentQuestion.getAnswer() == randomizedAnswerArray[1]) {
@@ -135,6 +143,7 @@ public class gameActivity extends AppCompatActivity {
                     buttonB.setBackgroundColor(Color.RED);
                     displayCorrectAnswer();
                 }
+                disableAllButtons();
                 break;
             case R.id.buttonC:
                 if(currentQuestion.getAnswer() == randomizedAnswerArray[2]) {
@@ -145,6 +154,7 @@ public class gameActivity extends AppCompatActivity {
                     buttonC.setBackgroundColor(Color.RED);
                     displayCorrectAnswer();
                 }
+                disableAllButtons();
                 break;
             case R.id.buttonD:
                 if(currentQuestion.getAnswer() == randomizedAnswerArray[3]) {
@@ -155,9 +165,26 @@ public class gameActivity extends AppCompatActivity {
                     buttonD.setBackgroundColor(Color.RED);
                     displayCorrectAnswer();
                 }
+                disableAllButtons();
                 break;
 
         }
+    }
+
+    public void disableAllButtons(){
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+        buttonD.setEnabled(false);
+        nextButton.setEnabled(true);
+    }
+
+    public void enableAllButtons(){
+        buttonA.setEnabled(true);
+        buttonB.setEnabled(true);
+        buttonC.setEnabled(true);
+        buttonD.setEnabled(true);
+        nextButton.setEnabled(false);
     }
 
     public void displayCorrectAnswer(){
@@ -181,6 +208,8 @@ public class gameActivity extends AppCompatActivity {
         scoreText.setText(String.valueOf(score));
     }
     public void onNextButtonClick(View v) {
+        enableAllButtons();
+
         currentQuestionNumber++;
         if(currentQuestionNumber != lastPage) {
            currentQuestion = questions.get(currentQuestionNumber);
@@ -208,7 +237,11 @@ public class gameActivity extends AppCompatActivity {
         gameBackGround.setBackgroundColor(Color.parseColor(bgHexCodes[randomColorIndex]));
     }
     public QuestionAnswer setCurrentQuestion(List<QuestionAnswer> questions) {
-        QuestionAnswer currentQuestion = questions.get(currentQuestionNumber);
+        Random randIndex = new Random();
+        int randomQuestionIndex = randIndex.nextInt(tempQuestions.size());
+        QuestionAnswer currentQuestion = tempQuestions.get(randomQuestionIndex);
+        tempQuestions.remove(randomQuestionIndex);
+
 
         //currentQuestionNumber++;
 

@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+        Button settingsButton = (Button) findViewById(R.id.settingsButton);
+        settingsButton.setEnabled(false);
     }
 
     public void onClickPlay(View v){
