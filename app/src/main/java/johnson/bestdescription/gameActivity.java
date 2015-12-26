@@ -43,14 +43,13 @@ public class gameActivity extends AppCompatActivity {
     public final String TAG = "johnson.bestdescription";
     public int currentQuestionNumber = 0;
     List<QuestionAnswer> questions;
-    List<QuestionAnswer> tempQuestions;
     ArrayList<String> CurrentQuestionList = new ArrayList<>(4);
     QuestionAnswer currentQuestion;
+
     int randNum;
     int maxNum = 4;
     int currentAnswerIndex;
     int currentPossibleAnswerIndex = 1;
-    String [] randomizedAnswerArray = new String[4];
 
     int score;
     int lastPage;
@@ -88,7 +87,6 @@ public class gameActivity extends AppCompatActivity {
         defaultBG = buttonA.getBackground();
 
         questions = setQuestionsFromDB();
-        tempQuestions = questions;
         currentQuestion = setCurrentQuestion(questions);
         setQuestionWidgets(currentQuestion);
 
@@ -123,10 +121,18 @@ public class gameActivity extends AppCompatActivity {
         return questions;
     }
 
+    /*
+    * onButtonClick()
+    *When user presses a button, each button checks to see
+    * if the current question's answer matches the button text
+    * button turn green.
+    * if the selected answer is wrong, the button turns red
+     */
+
     public void onButtonClick(View V) {
         switch(V.getId()){
             case R.id.buttonA:
-                if(currentQuestion.getAnswer() == randomizedAnswerArray[0]) {
+                if(currentQuestion.getAnswer() == buttonA.getText().toString()) {
                     buttonA.setBackgroundColor(Color.GREEN);
                     updateScore();
                 }
@@ -137,7 +143,7 @@ public class gameActivity extends AppCompatActivity {
                 disableAllButtons();
                 break;
             case R.id.buttonB:
-                if(currentQuestion.getAnswer() == randomizedAnswerArray[1]) {
+                if(currentQuestion.getAnswer() == buttonB.getText().toString()) {
                     buttonB.setBackgroundColor(Color.GREEN);
                     updateScore();
                 }
@@ -148,7 +154,7 @@ public class gameActivity extends AppCompatActivity {
                 disableAllButtons();
                 break;
             case R.id.buttonC:
-                if(currentQuestion.getAnswer() == randomizedAnswerArray[2]) {
+                if(currentQuestion.getAnswer() == buttonC.getText().toString()) {
                     buttonC.setBackgroundColor(Color.GREEN);
                     updateScore();
                 }
@@ -159,7 +165,7 @@ public class gameActivity extends AppCompatActivity {
                 disableAllButtons();
                 break;
             case R.id.buttonD:
-                if(currentQuestion.getAnswer() == randomizedAnswerArray[3]) {
+                if(currentQuestion.getAnswer() == buttonD.getText().toString()) {
                     buttonD.setBackgroundColor(Color.GREEN);
                     updateScore();
                 }
@@ -189,6 +195,11 @@ public class gameActivity extends AppCompatActivity {
         nextButton.setEnabled(false);
     }
 
+    /*
+    * displayCorrectAnswer()
+    *Sets the background color of the correct
+    * choice to green
+     */
     public void displayCorrectAnswer(){
         switch(currentAnswerIndex){
             case 1:
@@ -209,6 +220,18 @@ public class gameActivity extends AppCompatActivity {
         score++;
         scoreText.setText(String.valueOf(score));
     }
+
+    /*
+    * onNextButtonClick()
+    *When the next button is clicked
+    * update the current Question Number
+    * If the question number is not equal to the next
+    * last page, set the current question index
+    * reset the color backgrounds for all the buttons
+    * to default.
+    *
+    * if it is the last page, call EndGameActivity
+     */
     public void onNextButtonClick(View v) {
         enableAllButtons();
 
@@ -233,19 +256,30 @@ public class gameActivity extends AppCompatActivity {
        }
     }
 
+    /*
+    *setGameBackground()
+    *String [] bgHexCodes stores hex codes of Colors
+    *Randomly generating an int from 0 to bgHexCodes.length
+    *Set background color.
+     */
     public void setGameBackground(){
         Random rand = new Random();
         int randomColorIndex = rand.nextInt(bgHexCodes.length);
         gameBackGround.setBackgroundColor(Color.parseColor(bgHexCodes[randomColorIndex]));
     }
+
+    /*
+    * setCurrentQuestion()
+    *Randomly generates a number index.
+    * Sets the currentquestion as the index generated.
+    * remove the index from questions list.
+     */
     public QuestionAnswer setCurrentQuestion(List<QuestionAnswer> questions) {
         Random randIndex = new Random();
-        int randomQuestionIndex = randIndex.nextInt(tempQuestions.size());
-        QuestionAnswer currentQuestion = tempQuestions.get(randomQuestionIndex);
-        tempQuestions.remove(randomQuestionIndex);
 
-
-        //currentQuestionNumber++;
+        int randomQuestionIndex = randIndex.nextInt(questions.size());
+        QuestionAnswer currentQuestion = questions.get(randomQuestionIndex);
+        questions.remove(randomQuestionIndex);
 
         return currentQuestion;
     }
@@ -254,14 +288,7 @@ public class gameActivity extends AppCompatActivity {
         TextView questionText = (TextView) findViewById(R.id.questionText);
         questionText.setText(currentQuestion.getQuestion());
 
-
-
-        //randomNumber();
-
-
-        CurrentQuestionList = moveToString(currentQuestion); //CRASHES HERE
-
-        //randomNumber();
+        CurrentQuestionList = moveToString(currentQuestion);
 
         buttonA.setText(CurrentQuestionList.get(randomNumber()));
         removeFromQuestionList(CurrentQuestionList);
@@ -272,19 +299,6 @@ public class gameActivity extends AppCompatActivity {
         buttonD.setText(CurrentQuestionList.get(randomNumber()));
         removeFromQuestionList(CurrentQuestionList);
 
-        retrieveButtonStrings(buttonA, buttonB, buttonC, buttonD);
-    }
-
-    public void retrieveButtonStrings(Button buttonA, Button buttonB, Button buttonC, Button buttonD){
-        String buttonAText = buttonA.getText().toString();
-        String buttonBText = buttonB.getText().toString();
-        String buttonCText = buttonC.getText().toString();
-        String buttonDText = buttonD.getText().toString();
-
-        randomizedAnswerArray[0] = buttonAText;
-        randomizedAnswerArray[1] = buttonBText;
-        randomizedAnswerArray[2] = buttonCText;
-        randomizedAnswerArray[3] = buttonDText;
     }
 
     public int randomNumber() {
@@ -295,8 +309,6 @@ public class gameActivity extends AppCompatActivity {
         maxNum -= 1;
         if (maxNum == 0)
             maxNum = 4;
-
-        //checkForAnswerIndex();
 
         randNum = thisRandomNumber;
         checkForAnswerIndex();

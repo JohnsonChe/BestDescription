@@ -54,25 +54,9 @@ public class DBHandler extends SQLiteOpenHelper {
                 throw new Error(e);
             }
         }
-
-
     }
 
     private boolean checkDataBase(){
-        /*
-        SQLiteDatabase checkDB = null;
-        try{
-            String myPath = DATABASE_PATH + DATABASE_NAME;
-            checkDB = SQLiteDatabase.openDatabase(myPath,null,SQLiteDatabase.OPEN_READONLY);
-        }catch(SQLiteException e){
-            throw new Error("Database Doesn't exist");
-        }
-        if(checkDB != null){
-            checkDB.close();
-        }
-
-        return checkDB != null ? true : false;
-        */
 
         File dbFile = myContext.getDatabasePath(DATABASE_NAME);
         return dbFile.exists();
@@ -119,23 +103,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /*
-        String query = "CREATE TABLE " + TABLE_QUESTIONS + "(" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_QUESTION + " TEXT " +
-                COLUMN_ANSWER + " TEXT " +
-                COLUMN_POSSIBLEANSWERS + " TEXT " +
-                ");";
-        db.execSQL(query);
-        */
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        /*
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTIONS);
-        onCreate(db);
-        */
+
         if (newVersion > oldVersion) {
             try {
                 copyDataBase();
@@ -144,39 +116,16 @@ public class DBHandler extends SQLiteOpenHelper {
             }
         }
     }
+
     /*
-    public void addQuestion(QuestionAnswer question){
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_QUESTION, question.getQuestion());
-        SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_QUESTIONS, null, values);
-        db.close();
-    }
-    */
-/*
-    public String databaseToString(){
-        String dbString = "";
-        SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + DATABASE_NAME + " WHERE 1";
-
-        Cursor c = db.rawQuery(query,null);
-        c.moveToFirst();
-
-        while(!c.isAfterLast()){
-                if(c.getString(c.getColumnIndex("question"))!= null){
-                    dbString = c.getString(c.getColumnIndex("Question"));
-            }
-            c.moveToNext();
-        }
-
-        db.close();
-        return dbString;
-    }
-   */
-
+    *Retrieves a the questions from database
+    * Create Arraylist of QuestionAnswer objects
+    * One by one, reads in each index of information into Arraylist questionset.
+    * Returns questionset
+     */
     public List<QuestionAnswer> getQuestionSet(){
         List<QuestionAnswer> questionSet = new ArrayList<QuestionAnswer>();
-        Cursor c = myDataBase.rawQuery("SELECT * FROM " + DATABASE_NAME, null);
+        Cursor c = myDataBase.rawQuery("SELECT * FROM " + DATABASE_NAME , null);
         while (c.moveToNext()){
         //Log.d("QUESTION", "Question Found in DB: " + c.getString(1));
             QuestionAnswer q = new QuestionAnswer();
@@ -187,7 +136,6 @@ public class DBHandler extends SQLiteOpenHelper {
             q.setIncorrect3(c.getString(5));
             questionSet.add(q);
         }
-
         return questionSet;
     }
 
